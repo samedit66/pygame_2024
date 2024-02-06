@@ -32,7 +32,7 @@ def update_game_state(user_input, guessed_number, tries):
     """
     Обновляет состояние игры
     """
-    if tries == 0:
+    if (tries == 0) and (user_input != guessed_number):
         game_state = "lose"
     elif user_input == guessed_number:
         game_state = "win"
@@ -71,7 +71,7 @@ def game_loop():
     """
     low_bound, high_bound, guessed_number, tries = initialize()
 
-    print(f"Я загадал число от {low_bound} до {high_bound}... {guessed_number}")
+    print(f"Я загадал число от {low_bound} до {high_bound}...")
     print(f"У тебя {tries} попыток, чтобы угадать!")
 
     while True:
