@@ -32,15 +32,18 @@ def update_game_state(user_input, guessed_number, tries):
     """
     Обновляет состояние игры
     """
-    if (tries == 0) and (user_input != guessed_number):
+
+    assert tries >= 1
+
+    if user_input != guessed_number and tries == 1:
         game_state = "lose"
-    elif user_input == guessed_number:
-        game_state = "win"
-    elif user_input < guessed_number:
-        game_state = "high"
     elif user_input > guessed_number:
         game_state = "low"
-    
+    elif user_input < guessed_number:
+        game_state = "high"
+    else:
+        game_state = "win"
+
     return game_state, tries - 1
 
 
