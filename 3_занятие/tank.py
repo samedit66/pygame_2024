@@ -1,6 +1,19 @@
 import pygame 
 
 
+class Tank(pygame.sprite.Sprite):
+    
+    def __init__(self, position: tuple[int, int], file_image: str):
+        self.image = pygame.image.load(file_image).convert_alpha()
+        self.rect = self.image.get_rect(topleft=position)
+
+    def update(self):
+        pass
+    
+    def render(self, window):
+        window.blit(self.image, self.rect)
+        
+        
 class Game:
     
     def __init__(self):
@@ -13,7 +26,7 @@ class Game:
         self.clock = pygame.time.Clock()
         
         self.running = True
-        
+        self.tank = Tank(position=(0,0), file_image = "tanks_images/camo_tank.png")
 
     def process_input(self):
         for event in pygame.event.get():
@@ -25,7 +38,9 @@ class Game:
         pass 
 
     def render(self):
-        pass
+        self.main_window.fill(pygame.color.THECOLORS["white"])
+        self.tank.render(self.main_window)
+        pygame.display.update()
 
     def game_loop(self):
         while self.running:
@@ -35,6 +50,3 @@ class Game:
             self.clock.tick(self.FPS)
         pygame.quit()    
 
-        
-game = Game()
-game.game_loop()
