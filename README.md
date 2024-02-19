@@ -1,5 +1,12 @@
 # pygame_2024
 
+# Полезные материалы
++ [Хороший цикл статей по основам Pygame](https://proproprogs.ru/modules/chto-takoe-pygame-karkas-prilozheniya-fps)
++ [Ввдение в Pygame](https://habr.com/ru/articles/588605/)
++ [Про спрайты](https://habr.com/ru/articles/588765/)
++ [Еще про спрайты](https://proproprogs.ru/modules/chto-takoe-sprayty-i-kak-s-nimi-rabotat)
++ [Для тех, кто хорошо знает английский](https://www.patternsgameprog.com/series/discover-python-and-patterns/)
+
 # Правила ведения репозитория
 **Коммиты и пуши делаем ТОЛЬКО В СВОИ ВЕТКИ!**
 
