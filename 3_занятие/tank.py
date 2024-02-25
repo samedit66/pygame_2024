@@ -5,6 +5,8 @@ class Tank(pygame.sprite.Sprite):
         self.image = pygame.image.load(file_image).convert_alpha()
         self.up_image = self.image
         self.right_image = pygame.transform.rotate(self.image, -90)
+        self.left_image = pygame.transform.rotate(self.image, +90)
+        self.down_image = pygame.transform.rotate(self.image, -180)
 
         self.rect = self.image.get_rect(topleft=position)
         self.move_x = 0
@@ -18,6 +20,7 @@ class Tank(pygame.sprite.Sprite):
 
         if key[pygame.K_LEFT] or key[pygame.K_a]:
             self.move_x = -2
+            self.image = self.left_image
         elif key[pygame.K_RIGHT] or key[pygame.K_d]:
             self.move_x = 2   
             self.image = self.right_image
@@ -26,6 +29,7 @@ class Tank(pygame.sprite.Sprite):
             self.image = self.up_image
         elif key[pygame.K_DOWN] or key[pygame.K_s]:
             self.move_y = 2
+            self.image = self.down_image
 
 
     def update(self):
