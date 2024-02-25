@@ -1,0 +1,59 @@
+import pygame
+
+pygame.init()
+
+width = 500
+height = 450
+main_window = pygame.display.set_mode((width, height))
+
+running = True
+
+while running:
+    events = pygame.event.get()
+
+    for event in events:
+        if event.type == pygame.QUIT:
+            running = False
+
+    main_window.fill(pygame.color.THECOLORS['white'])
+    
+    left_x_1, left_y_1 = 12, 180
+    r1_width, r1_height = 250, 100
+    rect = pygame.Rect(left_x_1, left_y_1, r1_width, r1_height)
+    r1_color = pygame.color.THECOLORS['green']
+    pygame.draw.rect(main_window, rect=rect, color=r1_color)
+
+    left_x_2, left_y_2 = 270, 80
+    r2_width, r2_height = 100, 180
+    rect = pygame.Rect(left_x_2, left_y_2, r2_width, r2_height)
+    r2_color = pygame.color.THECOLORS['brown']
+    pygame.draw.rect(main_window, rect=rect, color=r2_color)
+
+    left_x_3, left_y_3 = 295, 110
+    r3_width, r3_height = 50, 50
+    rect = pygame.Rect(left_x_3, left_y_3, r3_width, r3_height)
+    r3_color = pygame.color.THECOLORS['green']
+    pygame.draw.rect(main_window, color=r3_color, rect=rect)
+
+    left_x_4, left_y_4 = 380, 190
+    r4_width, r4_height = 90, 90
+    r4_color = pygame.color.THECOLORS['blue']
+    rect = pygame.Rect(left_x_4, left_y_4, r4_width, r4_height)
+    pygame.draw.rect(main_window, rect=rect, color=r4_color)
+
+    radius1 = 62
+    center_x1, center_y1 = 72, 352
+    circle_color1 = pygame.color.THECOLORS['black']
+    pygame.draw.circle(main_window, color=circle_color1, radius=radius1,
+                       center=(center_x1, center_y1))
+
+    radius2 = 62
+    center_x2, center_y2 = 358, 352
+    circle_color2 = pygame.color.THECOLORS['black']
+    pygame.draw.circle(main_window, color=circle_color2, radius=radius2,
+                       center=(center_x2, center_y2))
+
+
+    pygame.display.update()
+
+pygame.quit()
