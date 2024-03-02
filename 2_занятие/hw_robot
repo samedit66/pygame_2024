@@ -1,0 +1,98 @@
+import pygame
+
+class Robot(pygame.sprite.Sprite):
+    def __init__(self, position, file_image:str):
+        self.image = pygame.image.load(file_image).convert_alpha()
+        self.rect = self.image.get_rect(topleft= position)
+        self.move_x = 0
+        self.move_y = 0
+        self.jumping = False
+        self.jump_size = 10
+
+
+    def process_input(self):
+        self.move_x = self.move_y = 0
+
+        key = pygame.key.get_pressed()
+
+        if key[pygame.K_LEFT] or key[pygame.K_a]:
+            self.move_x = -5
+
+        elif key[pygame.K_RIGHT] or key[pygame.K_d]:
+            self.move_x = 5   
+        if not self.jumping: 
+
+            if key[pygame.K_UP] or key[pygame.K_w]:
+                self.move_y = -5
+
+            elif key[pygame.K_DOWN] or key[pygame.K_s]:
+                self.move_y = 5
+
+            elif key[pygame.K_SPACE]:
+                self.jumping = True
+
+        else:
+            if self.jump_size >= -10:
+                if self.jump_size < 0:
+                    self.move_y += (self.jump_size ** 2) / 2
+                else:
+                    self.move_y -= (self.jump_size ** 2) / 2
+                self.jump_size -= 1
+
+            else:
+                self.jumping = False
+                self.jump_size = 10
+    
+    def update(self):
+        self.rect.x += self.move_x
+        self.rect.y += self.move_y
+
+    def render(self, window):
+        window.blit(self.image, self.rect)
+
+
+
+class Game:
+    def __init__(self):
+        pygame.init()
+
+        self.WINDOW_WIDTH = 600
+        self.WINDOW_HEIGHT = 600
+        self.FPS = 60
+
+        self.main_window = pygame.display.set_mode((self.WINDOW_WIDTH, self.WINDOW_HEIGHT))
+        self.clock = pygame.time.Clock()
+        self.running = True
+        self.robot = Robot(position = (200,250), file_image= 'robot_picture.jpg')
+
+
+    def process_input(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.running = False
+                return
+        self.robot.process_input()
+
+    
+    def update_game_state(self):
+        self.robot.update()
+
+    
+    def render(self):
+        self.main_window.fill(pygame.color.THECOLORS['white'])
+
+        self.robot.render(self.main_window)
+        pygame.display.update()
+
+    
+    def game_loop(self):
+        while self.running:
+            self.process_input()
+            self.update_game_state()
+            self.render()
+            self.clock.tick(self.FPS)
+        pygame.quit()
+
+game = Game()
+game.game_loop()
+           
