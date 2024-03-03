@@ -32,8 +32,15 @@ class CellPos():
 
         if CellPos._is_valid_pos(neighbor_col, neighbor_row):
             return None
-            
-        return CellPos(neighbor_col, neighbor_row)    
+
+        return CellPos(neighbor_col, neighbor_row)   
+
+
+    @staticmethod
+    def position_to_pixel(position):
+        col = position_col
+        row = position_row
+        return (col * Settings.CELL_SIZE, row * Settings.CELL_SIZE) 
 
 
 
