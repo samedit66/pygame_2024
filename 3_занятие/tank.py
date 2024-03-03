@@ -66,13 +66,11 @@ class Game:
                 return
         self.tank.process_input()
 
-
     def update_game_state(self):
         self.tank.update()
 
     def render(self):
         self.main_window.fill(pygame.color.THECOLORS['white'])
-
         self.tank.render(self.main_window)
         pygame.display.update()
 
@@ -83,7 +81,6 @@ class Game:
             self.render()
             self.clock.tick(self.FPS)
         pygame.quit()
-
 
 
 game = Game()
