@@ -14,7 +14,24 @@ class CellPos():
     def __eq__(self, other_pos):
         return (self.col == other_pos.col) and (self.row == other_pos.row)
 
-cell_pos1 =  CellPos(10, 10)
-cell_pos2 = CellPos(13, 14)
-print(cell_pos1 == cell_pos2)
-print(cell_pos1)
+    @staticmethod
+    def _is_valid_pos(col, row):
+        return (Settings.MIN_ROW_INDEX <= row <= Settings.MAX_ROW_INDEX) and \
+            (Settings.MIN_COL_INDEX <= col <= Settings.MAX_COL_INDEX)
+
+    def get_neighbor(self, direction):
+        neighbor_col = self.col
+        neighbor_row = self.row
+        if direction == Direction.UP:
+            neighbor_row -= 1
+        elif direction == Direction.DOWN:
+            neighbor_row += 1
+        elif direction == Direction.LEFT:
+            neighbor_col -= 1
+        elif direction == Direction.RIGHT:
+            neighbor_col += 1
+
+        if CellPos._is_valid_pos(neighbor_col, neighbor_row):
+            return None
+    
+        return CellPos(neighbor_col, neighbor_row)
