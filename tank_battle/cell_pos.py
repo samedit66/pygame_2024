@@ -44,4 +44,4 @@ class CellPos():
         else:
             col = position.col
             row = position.row
-            return(col * Settings.CELL_SIZE, row * Settings.CELL_SIZE)
+        return(col * Settings.CELL_SIZE, row * Settings.CELL_SIZE)
