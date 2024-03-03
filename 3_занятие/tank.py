@@ -57,7 +57,6 @@ class Game():
                 return
         self.tank.process_input()
 
-
     def update_game_state(self):
         self.tank.update()
 
