@@ -40,3 +40,8 @@ class CellPos():
         
         return CellPos(neighbour_col, neighbour_row)
     
+    @staticmethod
+    def position_to_pixel(position):
+        col = position.col 
+        row = position.row
+        return(col * Settings.CELL_SIZE, row * Settings.CELL_SIZE)
