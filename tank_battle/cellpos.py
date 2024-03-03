@@ -38,8 +38,12 @@ class CellPos():
 
     @staticmethod
     def position_to_pixel(position):
-        col = position_col
-        row = position_row
+        if isinstance(position, tuple):
+            col = position[0]
+            row = position[1]
+        else:
+            col = position.col 
+            row = position.row 
         return (col * Settings.CELL_SIZE, row * Settings.CELL_SIZE) 
 
 
