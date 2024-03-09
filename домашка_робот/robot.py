@@ -1,4 +1,4 @@
-import pygame # Импортируем библиотеку
+import pygame 
 
 pygame.init()
 
@@ -6,27 +6,20 @@ class Game():
 
     def __init__(self):
 
-        # Ширина и высота игрового окна
         self.WINDOW_WIDTH = 1000
         self.WINDOW_HEIGHT = 1000
         
-        # Ограничиваемся 60 кадрами в секунду
         self.FPS = 60
 
-        # Создаем главное игровое окно
         self.main_window = pygame.display.set_mode((self.WINDOW_WIDTH, self.WINDOW_HEIGHT))
 
-        # "Часы" ограничивают количество FPS в секунду
         self.clock = pygame.time.Clock()
 
-        # Статус игры
         self.running = True
 
-        # Координаты верхнего левого угла кузова (body) машины
         self.x = 200
         self.y = 200
 
-        # Величины сдвигов по координатам при нажатии
         self.x_move = 0
         self.y_move = 0
 
@@ -57,8 +50,6 @@ class Game():
         self.main_window.fill(main_window_color)
         self.draw()
 
-        # Не забываем обновить экран, как только что-то нарисовали,
-        # иначе ничего не появится
         pygame.display.update()
 
     def main_loop(self):
