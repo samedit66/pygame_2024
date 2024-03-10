@@ -3,6 +3,7 @@ import pygame
 from settings import Settings
 from ground import *
 from obstacle import Wall
+from cell_pos import CellPos
 
 class Field:
     def __init__(self):
