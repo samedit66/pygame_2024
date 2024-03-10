@@ -2,7 +2,7 @@ import pygame
 
 from settings import Settings
 from ground import *
-from abstacle import Wall
+from obstacle import Wall
 
 class Field:
     def __init__(self):
@@ -16,7 +16,7 @@ class Field:
         neighbor = position.get_neigbor(direction)
         return (neighbor is not None) and (not self._is_occupied(neighbor))
     
-    def _IS_occupied(self, position):
+    def _is_occupied(self, position):
         for unit in self.units:
             if unit.position == position:
                 return True
@@ -24,3 +24,12 @@ class Field:
             if wall.position == position:
                 return True
         return False
+
+    def put_at(self, new_unit, position):
+        if self._is_occupied(position):
+            return False
+        
+        new_unit.set_field(self)
+        new_unit.set_position(position)
+        self.units.append(new_unit)
+        return True
