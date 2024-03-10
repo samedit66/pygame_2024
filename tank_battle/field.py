@@ -24,3 +24,12 @@ class Field():
             if wall.position == position:
                 return True
         return False 
+
+    def put_at(self, new_unit, position):
+        is self._is_occupied(position):
+            return False 
+
+        new_unit.set_field(self)
+        new_unit.set_position(position)
+        self.units.append(new_unit)
+        return True
