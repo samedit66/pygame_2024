@@ -17,11 +17,8 @@ class Game():
 
         self.running = True
 
-        self.x = 200
-        self.y = 200
-
-        self.x_move = 0
-        self.y_move = 0
+        self.x_start = 200
+        self.y_start = 200
 
     def process_input(self):
         self.move_x =  self.move_y = 0
@@ -35,8 +32,8 @@ class Game():
             pygame.time.wait(1000)
 
     def update_game_state(self):
-        self.x += self.x_move
-        self.y += self.y_move
+        self.x_start += self.move_x
+        self.x_start += self.move_y
 
     def draw(self):
         x, y, width, height = 0, 0, 200, 300
