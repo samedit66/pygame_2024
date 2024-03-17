@@ -1,5 +1,5 @@
 from texture import TileTexture
-from settings import Setiings
+from settings import Settings
 
 class GameObject():
     def __init__(self, texture_file, tile_pos, angle = None, position= None):

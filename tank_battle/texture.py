@@ -4,8 +4,8 @@ from pygame import Rect
 
 class TileTexture:
     def __init__(self, texture_file:str, tile_size:int):
-        self.texture = pygame.image.load().convert_alpha()
-        self.tile_Size = tile_size 
+        self.texture = pygame.image.load(texture_file).convert_alpha()
+        self.tile_size = tile_size 
     
     def get(self, tile_pos=(0,0), angle = None):
         x,y = CellPos.position_to_pixel(tile_pos)

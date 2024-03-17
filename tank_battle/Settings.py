@@ -5,7 +5,7 @@ class Settings():
 
     MIN_ROW_INDEX = 0
     MAX_ROW_INDEX = ROWS_COUNT - 1
-    MAX_COL_INDEX = 0
+    MIN_COL_INDEX = 0
     MAX_COL_INDEX = COLS_COUNT - 1
 
 

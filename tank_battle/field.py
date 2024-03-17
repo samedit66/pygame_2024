@@ -1,8 +1,8 @@
-import Pygame 
+import pygame 
 
 from settings import Settings 
 from ground import * 
-from obstacle import Wall 
+from obstacle import Wall
 
 class Field():
     def __init__(self):
@@ -26,7 +26,7 @@ class Field():
         return False 
 
     def put_at(self, new_unit, position):
-        is self._is_occupied(position):
+        if self._is_occupied(position):
             return False 
 
         new_unit.set_field(self)
@@ -74,5 +74,5 @@ class Field():
                 self.ground[row][col].set_position(CellPos(col, row))
 
         self.walls = [
-            wall(position = CellPos(0, 3)), Wall(position = CellPos(1, 3), angle=180)
+            Wall(position = CellPos(0, 3)), Wall(position = CellPos(1, 3), angle=180)
         ]

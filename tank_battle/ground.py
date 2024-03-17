@@ -6,10 +6,10 @@ from game_object import GameObject
 
 class Ground(GameObject):
     def __init__(self, tile_pos, angle = None, position = None):
-        super.__init__('tanks_images/terrain.png', tile_pos, angle, position)
+        super().__init__('tank_battle/tanks_images/terrain.png', tile_pos, angle, position)
 
 
-class Ground(Ground):
+class Grass(Ground):
     def __init__(self, angle = None):
         super().__init__(tile_pos = CellPos(0,0), angle = angle)
 
