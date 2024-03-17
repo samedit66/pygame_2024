@@ -1,0 +1,28 @@
+from cell_pos import CellPos
+from game_object import GameObject
+
+class groubd(GameObject):
+    def __init__(self, title_pos, angle = None, position = None):
+        super().__init__('tanks_images/terrain.png', tile_pos, angle)
+
+class Grass(groubd):
+    def __init__(self, angle=None):
+        super().__init__(tile_pos= CellPos(0, 4), angle = angle)
+
+
+class Road(groubd):
+    def __init__(self, angle=None):
+        super().__init__(title_pos=CellPos(1, 3) angle = angle)
+
+
+class RoadCorner(groubd):
+    def __init__(self, angle=None):
+        super().__init__(title_pos=CellPos(4, 3) angle = angle)
+
+class TripleRoad(groubd):
+    def __init__(self, angle=None):
+        super().__init__(title_pos=CellPos(5, 4) angle = angle)
+
+class Bush(groubd):
+    def __init__(self, angle=None):
+        super().__init__(title_pos=CellPos(2, 4) angle = angle)
