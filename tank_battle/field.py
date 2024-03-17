@@ -14,14 +14,14 @@ class Field:
         self._init_field()
 
     def can_move_to(self,position, direction):
-        neighbor = position.get_neigbor(direction)
+        neighbor = position.get_neighbour(direction)
         return (neighbor is not None) and (not self._is_occupied(neighbor))
     
     def _is_occupied(self, position):
         for unit in self.units:
             if unit.position == position:
                 return True
-        if wall in self.walls:
+        for wall in self.walls:
             if wall.position == position:
                 return True
         return False
@@ -36,12 +36,12 @@ class Field:
         return True
     
     def _init_field(self):
-        self.groumd = [
+        self.ground = [
             [Grass(), Road(), Grass(), Grass(), Bush()],
-            [Grass(), Road(), Grass(), Bush(), Grass()]
-            [Road(angle = -90), TripleRoad(angle = 180), Grass(), Grass(), Grass()]
-            [Grass(), Road(), Grass(), Grass(), Grass()]
-            [Bush(), Road(), Bush(), Grass(), Grass()]
+            [Grass(), Road(), Grass(), Bush(), Grass()],
+            [Road(angle = -90), TripleRoad(angle = 180), Grass(), Grass(), Grass()],
+            [Grass(), Road(), Grass(), Grass(), Grass()],
+            [Bush(), Road(), Bush(), Grass(), Grass()],
         ]
 
         for row in range(Settings.ROWS_COUNT):

@@ -1,7 +1,7 @@
 import pygame
 from pygame import Rect
 
-from sell_pos import CellPos
+from cell_pos import CellPos
 
 class TileTexture:
     def __init__(self, texture_file, tile_size):

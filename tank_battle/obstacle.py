@@ -1,12 +1,12 @@
-from cell_pos import CellPoss
+from cell_pos import CellPos
 from game_object import GameObject
 
 
 class Obstacle(GameObject):
     def __init__(self, tile_pos, angle=None, position=None):
-        super().__init__('tanks_image/blue/towers_walls_blank.png', tile_pos, angle, position)
+        super().__init__('tanks_images/blue/towers_walls_blank.png', tile_pos, angle, position)
 
 class Wall(Obstacle):
-    def __init__(self, tile_pos, angle=None, position=None):
-        super().__init__(tile_pos= CellPoss(1,4), angle=angle, position= position)
+    def __init__(self, angle=None, position=None):
+        super().__init__(tile_pos= CellPos(1,4), angle=angle, position= position)
         
