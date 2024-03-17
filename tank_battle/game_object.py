@@ -4,7 +4,7 @@ from settings import Settings
 class GameObject():
 
     def __init__(self, texture_file, tile_pos, angle=None, position=None):
-        self.texture_file = TileTexture(texture_file, Settings.CELL_SIZE)
+        self.texture = TileTexture(texture_file, Settings.CELL_SIZE)
         self.tile_pos = tile_pos
         self.angle = angle
         self.position = position

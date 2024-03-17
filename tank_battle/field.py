@@ -20,10 +20,10 @@ class Field():
         for unit in self.units:
             if unit.position == position:
                 return True
-            for wall in self.walls:
-                if wall in self.walls:
-                    return True
-            return False
+        for wall in self.walls:
+            if wall.position == position:
+                return True
+        return False
         
     def put_at(self, new_unit, position):
         if self._is_occupied(position):
@@ -36,10 +36,10 @@ class Field():
     
     def _init_field(self):
         self.ground = [
-            [Grass(), Road(), Grass(), Grass(), Bush()]
-            [Grass(), Road(), Grass(), Bush(), Bush()]
-            [Road(angle=-90), TripleRoad(angle=180), Grass(), Grass(), Grass()]
-            [Grass(), Road(), Grass(), Grass(), Grass()]
+            [Grass(), Road(), Grass(), Grass(), Bush()],
+            [Grass(), Road(), Grass(), Bush(), Bush()],
+            [Road(angle=-90), TripleRoad(angle=180), Grass(), Grass(), Grass()],
+            [Grass(), Road(), Grass(), Grass(), Grass()],
             [Bush(), Road(), Bush(), Grass(), Grass()]
         ]
         for row in range(Settings.ROWS_COUNT):

@@ -1,4 +1,4 @@
-from direction import Direcction
+from direction import Direction
 from settings import Settings
 
 class CellPos():
@@ -21,17 +21,16 @@ class CellPos():
         neighbor_col = self.col
         neighbor_row = self.row
 
-        if direction == Direcction.UP:
+        if direction == direction.UP:
             neighbor_row -= 1
-        elif direction == Direcction.DOWN:
+        elif direction == Direction.DOWN:
             neighbor_row += 1
-        elif direction == Direcction.LEFT:
+        elif direction == Direction.LEFT:
             neighbor_col -= 1
-        elif direction == Direcction.RIGHT:
+        elif direction == Direction.RIGHT:
             neighbor_col += 1
             
-        # если в ходе вычислений получилась неправильная позиция, то веернуть признак, что соседа нет
-        if CellPos._is_valid_pos(neighbor_col, neighbor_row):
+        if not CellPos._is_valid_pos(neighbor_col, neighbor_row):
             return None
         
         return CellPos(neighbor_col, neighbor_row)

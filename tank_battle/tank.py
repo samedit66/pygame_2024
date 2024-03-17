@@ -1,6 +1,6 @@
 import pygame
 
-from direction import Direcction
+from direction import Direction
 from texture import TileTexture
 from settings import Settings
 
@@ -40,7 +40,7 @@ class Tank():
     def move(self, direction):
         if self.current_direction is not None and self.current_direction == direction:
             
-            if self.field.can_move_to(self.position, direction):
+            if not self.field.can_move_to(self.position, direction):
                 return
             
             self.position = self.position.get_neighbor(direction)
