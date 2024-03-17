@@ -1,57 +1,54 @@
 import pygame
 
-
 class Tank(pygame.sprite.Sprite):
-    def __init__(self, image_file, position):
-        pygame.sprite.Sprite.__init__(self)
-        # Загружаем исходную картинку, танк "смотрит" вверх.
-        # Не забываем в конце вызывать функцию convert_alpha(), чтобы ускорить
-        # загрузку картинки танка в дальнейшем.
-        self.image = pygame.image.load(image_file).convert_alpha()
-        # Картинка для танка, когда он направлен вверх
+    
+    def __init__(self, position: tuple[int, int], file_image: str):
+        self.image = pygame.image.load(file_image).convert_alpha()
         self.up_image = self.image
-        # Картинка для танка, когда он направлен влево
-        self.left_image = pygame.transform.rotate(self.image, 90)
-        # А остальные картинки делаете сами...
+        self.right_image = pygame.transform.rotate(self.image, -90)
         self.rect = self.image.get_rect(topleft=position)
-        # Хранят сдвиги в пикселях, насколько танк перемещается при нажатии клавиш
         self.move_x = 0
         self.move_y = 0
+        self.look_at = 'up'
 
     def process_input(self):
-        self.move_x = 0
-        self.move_y = 0
+        self.move_x = self.move_y = 0
 
         key = pygame.key.get_pressed()
         if key[pygame.K_LEFT] or key[pygame.K_a]:
             self.move_x = -2
-            self.image = self.left_image
+        elif key[pygame.K_RIGHT] or key[pygame.K_d]:
+            self.move_x = 2
+            self.image = self.right_image
         elif key[pygame.K_UP] or key[pygame.K_w]:
             self.move_y = -2
             self.image = self.up_image
-        # Код для обработки движения ВПРАВО и ВНИЗ самостоятельно!!!
+        elif key[pygame.K_DOWN] or key[pygame.K_s]:
+            self.move_y = 2
 
+      
     def update(self):
         self.rect.x += self.move_x
         self.rect.y += self.move_y
 
-    def render(self, screen):
-        screen.blit(self.image, self.rect)
-
+    def render(self,window):
+        window.blit(self.image, self.rect)
 
 class Game():
     
     def __init__(self):
-        pygame.init()
+        pygame.init 
 
-        self.WINDOW_WIDTH = 800
-        self.WINDOW_HEIGHT = 800
+        self.WINDOW_WIDTH = 600
+        self.WINDOW_HEIGHT = 600
         self.FPS = 60
 
-        self.main_window = pygame.display.set_mode((self.WINDOW_WIDTH, self.WINDOW_HEIGHT))
+        self.main_window = pygame.display.set_mode(
+            (self.WINDOW_WIDTH, self.WINDOW_HEIGHT)
+        )
         self.clock = pygame.time.Clock()
         self.running = True
-        self.tank = Tank("tanks_images/blue_tank.png", (0, 0))
+        self.tank = Tank(position=(0,0), file_image='tanks_images/camo_tank.png')
 
     def process_input(self):
         for event in pygame.event.get():
@@ -75,7 +72,3 @@ class Game():
             self.render()
             self.clock.tick(self.FPS)
         pygame.quit()
-
-
-game = Game()
-game.game_loop()

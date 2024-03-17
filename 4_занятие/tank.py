@@ -47,6 +47,7 @@ class Tank(pygame.sprite.Sprite):
         self.rect.y += self.move_y
         self.weapon_rect.x += self.move_x
         self.weapon_rect.y += self.move_y
+        
     def render(self, screen):
         screen.blit(self.image, self.rect)
         screen.blit(self.weapon_rect, self.rect)
@@ -61,17 +62,14 @@ class Game():
         self.WINDOW_HEIGHT = 800
         self.FPS = 60
 
-        self.main_window = pygame.display.set_mode((self.WINDOW_WIDTH, self.WINDOW_HEIGHT))
         self.clock = pygame.time.Clock()
         self.running = True
         self.tank = Tank("tanks_images/blue_tank.png", (0, 0))
 
-    def process_input(self):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                self.running = False
-                return
-        self.tank.process_input()
+        self.WINDOW_WIDTH = 600
+        self.WINDOW_HEIGHT = 600
+        self.FPS = 60
+
 
     def update_game_state(self):
         self.tank.update()
