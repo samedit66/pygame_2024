@@ -14,3 +14,5 @@ class GameObject():
 
     def render(self):
         return self.texture.get(self.tile_pos, self.angle)
+    
+     

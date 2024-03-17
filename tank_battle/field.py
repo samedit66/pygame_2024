@@ -30,8 +30,8 @@ class Field():
         if self._is_occupied(position):
             return False
 
-        new_unit.set_field(self)
-        nwe_unit.set_position(position)
+        new_unit.set_field(self)            
+        new_unit.set_position(position)
         self.units.append(new_unit)
         return True
 
@@ -61,16 +61,20 @@ class Field():
             [Bush(), Road(), Bush(), Grass(), Grass()],
         ]
 
-    for row in range(Settings.ROWS_COUNT):
-        for col in range(Settings.COLS_COUNT):
-            self.ground[row][col].set_position(CellPos(col,row))
+        for row in range(Settings.ROWS_COUNT):
+            for col in range(Settings.COLS_COUNT):
+                self.ground[row][col].set_position(CellPos(col,row))
 
-    self.walls = [
-        Wall(position=CellPos(0, 3)), Wall(position=CellPos(1, 3), angle=180)
-    ]
+        self.walls = [
+            Wall(position=CellPos(0, 3)), Wall(position=CellPos(1, 3), angle=180)
+        ]
 
-    def render_ground(self, field):
-        ...
+        def render_ground(self, field):
+            for i in range(len(self.ground[i])):
+                for j in range(len(self.ground[i])):
+                    ground_obj = self.ground[i][j]
+                    ground_pixel_pos = Cellpos.position_to_pixel(ground_obj.position)
+                    field.blit(ground_obj.render(), ground_pixel_pos)
 
     def render(self):
         field = pygame.Surface((Settings.PIXEL_WIDTH, Settings.PIXEL_HEIGHT))

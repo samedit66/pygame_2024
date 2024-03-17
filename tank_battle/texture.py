@@ -1,5 +1,5 @@
 import pygame
-from pygame import rect
+from pygame import Rect
 
 from cell_pos import CellPos
 

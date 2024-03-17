@@ -16,7 +16,7 @@ class Tank():
         self.body_texture = TileTexture(self.body_texture_file, Settings.CELL_SIZE)
         self.body_image = self.body_texture.get()
         self.turret_texture = TileTexture(self.turret_texture_file, Settings.CELL_SIZE)
-        self.turret.image = self.turret_texture.get()
+        self.turret_image = self.turret_texture.get()
 
     def rotate(self, direction):
         if direction == Direction.UP:
@@ -35,7 +35,7 @@ class Tank():
         if self.current_direction is not None and \
             self.current_direction == direction:
 
-                if self.field.can_move_to(self.position, direction):
+                if not self.field.can_move_to(self.position, direction):
                     return
 
                 self.position = self.position.get_neighbor(direction)
@@ -48,3 +48,9 @@ class Tank():
         tank.blit(self.body_image, (0, 0))
         tank.blit(self.turret_image, (0, 0))
         return tank
+
+    def set_field(self, field):
+        self.field = field
+
+    def set_position(self, position):
+        self.position = position

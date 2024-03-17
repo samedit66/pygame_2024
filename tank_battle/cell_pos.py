@@ -31,7 +31,7 @@ class CellPos():
         elif direction == Direction.RIGHT:
             neighbor_col += 1
 
-        if CellPos._is_valid_pos(neighbor_col, neighbor_row):
+        if not CellPos._is_valid_pos(neighbor_col, neighbor_row):
             return None
     
         return CellPos(neighbor_col, neighbor_row)
