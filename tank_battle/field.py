@@ -37,11 +37,11 @@ class Field:
     
     def _init_field(self):
         self.ground = [
-            [Grass(), Road(), Grass(), Grass(), Bush()],
-            [Grass(), Road(), Grass(), Bush(), Grass()],
-            [Road(angle = -90), TripleRoad(angle = 180), Grass(), Grass(), Grass()],
-            [Grass(), Road(), Grass(), Grass(), Grass()],
-            [Bush(), Road(), Bush(), Grass(), Grass()],
+            [Grass(), Bush(), Road(), RoadCprner(), RoadCprner(-90)],
+            [Bush(), Grass(), Road(), RoadCprner(90), RoadCprner(180)],
+            [Grass(), Bush(), Road(), Grass(), Grass()],
+            [Grass(), Grass(), Road(), RoadCprner(), RoadCprner(-90)],
+            [Grass(), Grass(), Road(), RoadCprner(90), RoadCprner(180)],
         ]
 
         for row in range(Settings.ROWS_COUNT):
