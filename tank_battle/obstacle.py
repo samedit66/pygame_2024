@@ -8,5 +8,5 @@ class Obstacle(GameObject):
 
 class Wall(Obstacle):
     def __init__(self, angle=None, position=None):
-        super().__init__(tile_pos= CellPos(1,4), angle=angle, position= position)
+        super().__init__(tile_pos= CellPos(2,4), angle=angle, position= position)
         
