@@ -54,4 +54,3 @@ class Game():
             self.clock.tick(Settings.FPS)
 
         pygame.quit()
-
