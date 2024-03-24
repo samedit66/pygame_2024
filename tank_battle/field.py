@@ -38,8 +38,8 @@ class Field():
         self.ground = [
             [RoadCorner(), RoadCorner(angle=-90), Grass(), Grass(), Bush()],
             [Road(), TripleRoad(), Road(angle=-90), Road(angle=-90), RoadCorner(angle=-90)],
-            [RoadCorner(angle=+90), TripleRoad(angle=180), Grass(), Grass(), Road()],
-            [Grass(), Road(), Grass(), Grass(), Road()],
+            [RoadCorner(angle=+90), TripleRoad(angle=180), Bush(), Bush(), Road()],
+            [Grass(), Road(), Bush(), Bush(), Road()],
             [Bush(), RoadCorner(angle=+90), Road(angle=-90), Road(angle=-90),  RoadCorner(angle=-180)]
         ]
         for row in range(Settings.ROWS_COUNT):
@@ -47,9 +47,9 @@ class Field():
                 self.ground[row][col].set_position(CellPos(col, row))
 
         self.walls = [
-            Wall(position=CellPos(2, 3),
-            angle=180),
-            Wall(position=CellPos(3, 3))
+            Wall(position=CellPos(2, 0)),
+            Wall(position=CellPos(3, 0),
+            angle=180)
         ]
 
     def render_walls(self, field):
