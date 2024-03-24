@@ -9,24 +9,24 @@ class Ground(GameObject):
 class Grass(Ground):
 
     def __init__(self, angle=None):
-        super().__init__(tile_pos=CellPos(0, 4), angle=angle)
+        super().__init__(tile_pos=CellPos(0, 0), angle=angle)
 
 class Road(Ground):
 
     def __init__(self, angle=None):
-        super().__init__(tile_pos=CellPos(3, 4), angle=angle,)
+        super().__init__(tile_pos=CellPos(3, 0), angle=angle,)
 
 class RoadCorner(Ground):
 
     def __init__(self, angle=None):
-        super().__init__(tile_pos=CellPos(4, 4), angle=angle,)
+        super().__init__(tile_pos=CellPos(4, 0), angle=angle,)
 
 class TripleRoad(Ground):
 
     def __init__(self, angle=None):
-        super().__init__(tile_pos=CellPos(5, 4), angle=angle,)
+        super().__init__(tile_pos=CellPos(5, 0), angle=angle,)
 
 class Bush(Ground):
 
     def __init__(self, angle=None):
-        super().__init__(tile_pos=CellPos(2, 4), angle=angle)
+        super().__init__(tile_pos=CellPos(2, 0), angle=angle)
