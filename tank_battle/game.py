@@ -5,7 +5,7 @@ from direction import Direction
 from cell_pos import CellPos
 from tank import Tank
 from field import Field
-
+from bullet import Bullet
 
 class Game():
     def __init__(self):
@@ -17,6 +17,7 @@ class Game():
 
         self.field = Field()
         self.tank = Tank()
+        self.bullet = Bullet(Direction.RIGHT)
         self.field.put_at(self.tank, CellPos(0,0))
 
         self.direction = None
