@@ -27,13 +27,22 @@ class Field():
         return False
         
     def put_at(self, new_unit, position):
-        if self._is_occupied(position):
+        if self.is_occupied(position):
             return False
 
         new_unit.set_field(self)            
         new_unit.set_position(position)
         self.units.append(new_unit)
         return True
+    
+    def get_unit(self, position):
+        for unit in self_units:
+            if units.position == position:
+                return unit
+        for wall in self.walls:
+            if wall.position == position:
+                return wall
+        return None
 
     def render_ground(self, field):
         for i in range(len(self.ground)):
