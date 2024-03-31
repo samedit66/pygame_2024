@@ -6,8 +6,7 @@ class Bullet:
     MAX_DISTANCE = 3
 
     def __init__(self, 
-                direction: Direction,
-                position: CellPos):
+                direction: Direction,):
         self._direction = direction
         self._pos = None
         self._is_alive = True

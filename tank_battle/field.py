@@ -15,9 +15,9 @@ class Field():
 
     def can_move_to(self, position, direction):
         neighbor = position.get_neighbor(direction)
-        return(neighbor is not None) and (not self._is_occupied(neighbor))
+        return(neighbor is not None) and (not self.is_occupied(neighbor))
 
-    def _is_occupied(self, position):
+    def is_occupied(self, position):
         for unit in self.units:
             if unit.position == position:
                 return True
