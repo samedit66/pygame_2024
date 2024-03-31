@@ -47,8 +47,8 @@ class Field():
         self.ground = [
             [RoadCorner(), RoadCorner(angle=-90), Grass(), Grass(), Bush()],
             [Road(), TripleRoad(), Road(angle=-90), Road(angle=-90), RoadCorner(angle=-90)],
-            [RoadCorner(angle=+90), TripleRoad(angle=180), Bush(), Bush(), Road()],
-            [Grass(), Road(), Bush(), Bush(), Road()],
+            [RoadCorner(angle=+90), TripleRoad(angle=180), Grass(), Grass(), Road()],
+            [Grass(), Road(), Grass(), Grass(), Road()],
             [Bush(), RoadCorner(angle=+90), Road(angle=-90), Road(angle=-90),  RoadCorner(angle=-180)]
         ]
         for row in range(Settings.ROWS_COUNT):
