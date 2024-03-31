@@ -15,9 +15,9 @@ class Field:
 
     def can_move_to(self,position, direction):
         neighbor = position.get_neighbour(direction)
-        return (neighbor is not None) and (not self._is_occupied(neighbor))
+        return (neighbor is not None) and (not self.is_occupied(neighbor))
     
-    def _is_occupied(self, position):
+    def is_occupied(self, position):
         for unit in self.units:
             if unit.position == position:
                 return True
@@ -27,14 +27,22 @@ class Field:
         return False
 
     def put_at(self, new_unit, position):
-        if self._is_occupied(position):
+        if self.is_occupied(position):
             return False
         
         new_unit.set_field(self)
         new_unit.set_position(position)
         self.units.append(new_unit)
         return True
-    
+    def get_unit(self, position):
+        for unit in self.units:
+            if unit.position == position:
+                return unit
+            for wall in self.walls:
+                if wall.position == position:
+                    return wall
+            return None
+
     def _init_field(self):
         self.ground = [
             [Grass(), Bush(), Road(), RoadCprner(), RoadCprner(-90)],
