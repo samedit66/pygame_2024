@@ -4,7 +4,7 @@ from game_object import GameObject
 class Obstacle(GameObject):
 
     def __init__(self, tile_pos, angle = None, position = None):
-        super().__init__('tank_battle/tanks_images/camo/towers_walls.png', tile_pos, angle, position)
+        super().__init__("C:\\Users\\stude\\Documents\\game\\pygame_2024\\tank_battle\\tanks_images\\camo\\towers_walls.png", tile_pos, angle, position)
 
 class Wall(Obstacle):
 

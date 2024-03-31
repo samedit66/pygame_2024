@@ -11,8 +11,8 @@ class Tank():
         self.field = None
         self.current_direction = None
         self.position = None
-        self.body_texture_file = 'tank_battle/tanks_images/camo/body.png'
-        self.turret_texture_file = 'tank_battle/tanks_images/purple/turret1.png'
+        self.body_texture_file = "C:\\Users\\stude\\Documents\\game\\pygame_2024\\tank_battle\\tanks_images\\camo\\body.png"
+        self.turret_texture_file = "C:\\Users\\stude\\Documents\\game\\pygame_2024\\tank_battle\\tanks_images\\purple\\turret1.png"
         self.body_texture = TileTexture(self.body_texture_file, Settings.CELL_SIZE)
         self.body_image = self.body_texture.get()
         self.turret_texture = TileTexture(self.turret_texture_file, Settings.CELL_SIZE)
