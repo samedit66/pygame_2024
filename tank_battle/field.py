@@ -47,9 +47,9 @@ class Field():
                 self.ground[row][col].set_position(CellPos(col, row))
 
         self.walls = [
-            Wall(position=CellPos(2, 3),
-            angle=180),
-            Wall(position=CellPos(3, 3))
+            Wall(position=CellPos(2, 3)),
+            Wall(position=CellPos(3, 3),
+            angle=180)
         ]
 
     def render_walls(self, field):
