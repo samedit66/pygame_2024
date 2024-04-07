@@ -19,8 +19,13 @@ class Game():
         self.field = Field()
         self.tank = Tank()
         self.bullet = Bullet(Direction.RIGHT)
+        self.field.put_at(self.bullet, CellPos(1, 0))
         self.field.put_at(self.tank, CellPos(0, 0))
         self.direction = None
+
+        self.can_shoot = True
+        self.BULLET_FLIES = pygame.USEREVENT + 1
+        pygame.time.set_timer(self.BULLET_FLIES, 500)
 
     def process_input(self):
         self.direction = None
@@ -29,19 +34,28 @@ class Game():
             if event.type == pygame.QUIT:
                 self.running = False
                 break
+            elif event.type == self.BULLET_FLIES:
+                if self.bullet_can_fly():
+                    self.bullet.move()
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                     self.direction = Direction.RIGHT
-                if event.key == pygame.K_LEFT or event.key == pygame.K_a:
+                elif event.key == pygame.K_LEFT or event.key == pygame.K_a:
                     self.direction = Direction.LEFT
-                if event.key == pygame.K_DOWN or event.key == pygame.K_s:
+                elif event.key == pygame.K_DOWN or event.key == pygame.K_s:
                     self.direction = Direction.DOWN
-                if event.key == pygame.K_UP or event.key == pygame.K_w:
+                elif event.key == pygame.K_UP or event.key == pygame.K_w:
                     self.direction = Direction.UP
+                elif event.key == pygame.K_SPACE:
+                    self.tank.shoot()
 
     def update_game_state(self):
         if self.direction is not None:
             self.tank.move(self.direction)
+            if self.bullet_can_fly:
+                for bullet in self.field.get_bullets():
+                    bullet.move
+                self.field.clear_dead_units()
 
     def render(self):
         self.main_window.blit(self.field.render(), (0, 0))
