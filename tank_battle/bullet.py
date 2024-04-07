@@ -2,14 +2,15 @@ from direction import Direction
 from cell_pos import CellPos
 from field import Field
 from game_object import GameObject
-from traits import IsAlive
+from traits import IsAlive, SelfMovving
 
-class Bullet(GameObject, IsAlive):
+class Bullet(GameObject, IsAlive, SelfMovving):
     MAX_DISTANCE = 3
 
     def __init__(self, direction: Direction):
         GameObject.__init__(self, 'tanks_images/bullet.png', (0,0))
         IsAlive.__init__(self)
+        SelfMovving.__init__(self)
         self._direction = direction
         self._position = None
         self._field = None
@@ -31,7 +32,7 @@ class Bullet(GameObject, IsAlive):
             self.die()
             return
 
-        neighbor = self._position.get_neighbour(self._direction)
+        neighbor = self.position.get_neighbour(self._direction)
         if neighbor is None:
             self.die()
             return
@@ -44,5 +45,5 @@ class Bullet(GameObject, IsAlive):
             self.die()
         else:
             self._way_distance += 1
-            self._position = neighbor
+            self.position = neighbor
 

@@ -9,3 +9,8 @@ class IsAlive():
     def die(self):
         self._is_alive = False
 
+
+class SelfMovving:
+
+    def move(self):
+        raise NotImplementedError()

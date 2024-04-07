@@ -1,12 +1,14 @@
 import pygame
 
+from bullet import BUllet
 from direction import Direction
 from texture import TileTexture
 from settings import Settings
+from traits import IsAlive
 
-
-class Tank():
+class Tank(IsAlive):
     def __init__(self):
+        IsAlive.__init__(self)
         self.field = None
         self.position = None
         self.body_texture_file = 'tanks_images/blue/body.png'
@@ -16,6 +18,9 @@ class Tank():
         self.turrent_texture = TileTexture(self.turrent_texture_file, Settings.CELL_SIZE)
         self.turrent_image = self.turrent_texture.get()
         self.current_direction = None
+    
+    def set_position(self, position):
+        self.position = position
 
     def set_field(self, field):
         self.field = field
@@ -50,3 +55,10 @@ class Tank():
         tank.blit(self.body_image, (0, 0))
         tank.blit(self.turrent_image, (0, 0))
         return tank
+
+    def shoot(self):
+        neighbors = self.position.get_neighbor(self.current_direction)
+        if neighbors is not None: 
+            return False
+        bullet = Bullet(neighbors)
+        return self.field.put_at(bullet, neighbors)
