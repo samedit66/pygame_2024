@@ -2,7 +2,10 @@ import pygame
 
 from settings import Settings 
 from ground import * 
-from obstacle import Wall
+from obstacle import WallMiddle
+from obstacle import WallEnd
+from obstacle import WallCorner
+
 
 class Field():
     def __init__(self):
@@ -11,6 +14,12 @@ class Field():
         self.units = []
 
         self._init_field() 
+
+    def clear_dead_units(self):
+        self.units = [unit for unit in self.units if unit.is_alive()]
+
+    def get_bullets(self):
+        return [unit for unit in self.units if isinstance(unit, Bullet)]
 
     def can_move_to(self, position, direction):
         neighbor = position.get_neighbor(direction)
@@ -71,11 +80,11 @@ class Field():
 
     def _init_field(self):
         self.ground = [
-            [Grass(), Road(), Grass(), Grass(), Bush()],
-            [Grass(), Road(), Grass(), Bush(), Grass()],
-            [Road(angle=-90), TripleRoad(angle = 180), Grass(), Grass(), Grass(),],
             [Grass(), Road(), Grass(), Grass(), Grass()],
-            [Bush(), Road(), Bush(), Grass(), Grass()],
+            [Grass(), Road(), Grass(), Bush(), Grass()],
+            [Road(angle = 90), QuadRoad(), Road(angle = 90), Road(angle = 90), Road(angle = 90),],
+            [Grass(), Road(), Grass(), Crater(), Grass()],
+            [Bush(), Road(), Grass(), Grass(), Grass()],
         ]
 
         for row in range(Settings.ROWS_COUNT):
@@ -83,5 +92,12 @@ class Field():
                 self.ground[row][col].set_position(CellPos(col, row))
 
         self.walls = [
-            Wall(position = CellPos(0, 3)), Wall(position = CellPos(1, 3), angle=180)
+            WallCorner(position = CellPos(2, 0), angle=90), 
+            WallEnd(position = CellPos(2, 1), angle=90),
+            WallMiddle(position = CellPos(3, 0)),
+            WallMiddle(position = CellPos(4, 0)),
+            WallEnd(position = CellPos(2, 3), angle=-90),
+            WallCorner(position = CellPos(2, 4), angle=180),
+            WallMiddle(position = CellPos(4, 4)),
+            WallMiddle(position = CellPos(3, 4))
         ]
