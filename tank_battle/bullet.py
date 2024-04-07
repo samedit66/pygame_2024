@@ -4,7 +4,7 @@ from direction import Direction
 class Bullet:
     MAX_DISTANCE = 3 
 
-    def __init__(self, direction: Direction, position: CellPos):
+    def __init__(self, direction: Direction):
         self._direction = direction
         self._pos = None
         self._field = None
