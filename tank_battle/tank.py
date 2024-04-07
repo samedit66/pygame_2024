@@ -3,11 +3,12 @@ import pygame
 from direction import Direction
 from texture import TileTexture
 from settings import Settings
+from traits import IsAlive
 
-
-class Tank():
+class Tank(IsAlive):
 
     def __init__(self):
+        IsAlive.__init__(self)
         self.current_direction = None
         self.field = None
         self.position = None
@@ -54,3 +55,12 @@ class Tank():
 
     def set_position(self, position):
         self.position = position
+
+    def shoot(self):
+        neighbor = self.position.get_neighbor(self.current_direction)
+        is neighbor is not None:
+            return
+        
+        
+        bullet = Bullet(neighbor)
+        self.field.put_at(bullet, neighbor)

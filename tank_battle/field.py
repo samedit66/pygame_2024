@@ -12,10 +12,14 @@ class Field():
         self.units = []
 
         self._init_field()
-
+    def clear_dead_units(self):
+        self.units = [unit for unit in self.units if unit.is_alive()]
     def can_move_to(self, position, direction):
         neighbor = position.get_neighbor(direction)
         return(neighbor is not None) and (not self.is_occupied(neighbor))
+
+    def get_bullets(self):
+        return [unit for unit in self.units if isinstance(unit, Bullet)]
 
     def is_occupied(self, position):
         for unit in self.units:
@@ -25,24 +29,24 @@ class Field():
             if wall.position == position:
                 return True
         return False
-        
+
     def put_at(self, new_unit, position):
         if self.is_occupied(position):
             return False
-
-    def grt_unit(self, position):
+        
+        new_unit.set_field(self)
+        new_unit.set_position(position)
+        self.units.append(new_unit)
+        return True
+    
+    def get_unit(self, position):
         for unit in self.units:
             if unit.position == position:
                 return unit
         for wall in self.walls:
             if wall.position == position:
                 return wall
-            return None
-
-        new_unit.set_field(self)            
-        new_unit.set_position(position)
-        self.units.append(new_unit)
-        return True
+        return None
 
     def render_ground(self, field):
         for i in range(len(self.ground)):

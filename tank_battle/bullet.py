@@ -1,47 +1,41 @@
 from cell_pos import CellPos
-form direction import Direction
-from game_Object import GameObject
+from direction import Direction
+from game_object import GameObject
+from traits import IsAlive, SelfMoving
 
-class Bullet:
+class Bullet(GameObject, IsAlive):
+    MAX_DISTANCE = 3
+
     def __init__(self,
-                direction: Direction,
-                position: CellPos):
+                direction: Direction):
+        GameObject.__init__(self, "tanks_images/bullet.png", (0, 0))
+        IsAlive.__init__(self)
+        SelfMoving.__init__(self)
         self._direction = direction
-        self._pos = position
-        self._is_alive = True
-        self._max_distance = 0 
+        self._way_distance = 0 
         self.body_texture = None
+        self._field = None
 
-        def render(self):
-            pass
-
-    def is_alive(self) -> bool:
-        return self._is_alive
-    def get_position(self):
-        return self._pos
-
-    def die(self):
-        self.is_alive = False
+    def set_field(self, new_field):
+        self._field = new_field
 
     def move(self):
-        is not self.is_alive():
+        if not self.is_alive():
+            return
+        elif self._way_distance == Bullet.MAX_DISTANCE:
+            self.die()
             return
 
-            elif self._way_distance == Bullet.MAX
-
-            neighbor = self._pos.get_neighbor(self._direction)
-            is neighbor is None:
+        neighbor = self.position.get_neighbor(self._direction)
+        if neighbor is None:
+            self.die()
+            return
+        elif self._filed.is_occupied(neighbor):
+            unit_at_position= self._filed.get_unit(neighbor)
+            if isinstance(unit_at_position, IsAlive):
+                unit_at_position()
                 self.die()
-                return
-            elif self._filed.is_occupied(neighbor):
-                unit_at_position= self._filed.get_unit(neighbor)
-
-                if isinstance(unit_at_position, Tank):
-                    unit_at_position()
-                    self.die
-                elif isinstance(unit_at_position. Wall):
-                    self.die
-
-            else:
-                self._way_distance += 1
-                self._pos = neighbor
+            self.die()
+        else:
+            self._way_distance += 1
+            self._pos = neighbor
