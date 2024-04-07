@@ -11,5 +11,9 @@ class Settings():
     PIXEL_HEIGHT = ROWS_COUNT * CELL_SIZE
     PIXEL_WIDTH = COLS_COUNT * CELL_SIZE
 
+<<<<<<< HEAD
     FPS = 60
     
+=======
+    FPS = 60
+>>>>>>> 93e7d934b788d6586b9b9ccdf853a02bd94ae495
