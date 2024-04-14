@@ -37,8 +37,8 @@ class Bullet(GameObject, IsAlive, SelfMoving):
 
             if isinstance(unit_at_position, IsAlive):
                 unit_at_position.die()
-            
             self.die() 
+            
         else:
             self._way_distance += 1
             self.position = neighbor

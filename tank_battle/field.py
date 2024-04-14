@@ -1,5 +1,6 @@
 import pygame
 
+from bullet import Bullet
 from settings import Settings
 from ground import *
 from obstacle import Wall
@@ -8,7 +9,7 @@ class Field():
     
     def __init__(self):
         self.ground = None
-        self.walls = None
+        self.walls = []
         self.units = []
 
         self._init_field()
@@ -42,8 +43,8 @@ class Field():
         return True
     
     def get_unit(self, position):
-        for unit in self_units:
-            if units.position == position:
+        for unit in self.units:
+            if unit.position == position:
                 return unit
         for wall in self.walls:
             if wall.position == position:
