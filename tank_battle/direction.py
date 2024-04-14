@@ -6,4 +6,6 @@ class Direction(Enum):
     LEFT = 2
     RIGHT = 3
 
-
+    @staticmethod
+    def valoues():
+        return[Direction.UP, Direction.DOWN, Direction.LEFT, Direction.RIGHT]

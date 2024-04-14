@@ -21,7 +21,7 @@ class CellPos():
         neighbor_col = self.col
         neighbor_row = self.row
 
-        if direction == direction.UP:
+        if direction == Direction.UP:
             neighbor_row -= 1
         elif direction == Direction.DOWN:
             neighbor_row += 1

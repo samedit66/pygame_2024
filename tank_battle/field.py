@@ -1,4 +1,5 @@
 import pygame
+from bullet import Bullet
 
 from settings import Settings
 from ground import *
@@ -13,10 +14,10 @@ class Field():
         self._init_field()
     
     def clear_dead_units(self):
-        self.units = [unit for unit in self.units if unit._is_alive]
+        self.units = [unit for unit in self.units if unit.is_alive()]
 
-    def get_bullet(self):
-        self.units = [unit for unit in self.units if isinstance(unit, Bullet)]
+    def get_bullets(self):
+        return [unit for unit in self.units if isinstance(unit, Bullet)]
 
     def can_move_to(self, position, direction):
         neighbor = position.get_neighbor(direction)

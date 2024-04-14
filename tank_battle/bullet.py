@@ -14,7 +14,7 @@ class Bullet(GameObject, IsAlive, SelfMoving):
         SelfMoving.__init__(self)
 
         self._direction = direction
-        self._way_distance = 0
+        self._way_distance = 1
         self._field = None
         self._texture = None
 
@@ -24,6 +24,7 @@ class Bullet(GameObject, IsAlive, SelfMoving):
     def move(self):
         if not self.is_alive():
             return
+
         if self._way_distance == Bullet.MAX_DISTANCE:
             self.die()
             return
@@ -38,10 +39,10 @@ class Bullet(GameObject, IsAlive, SelfMoving):
 
             if isinstance(unit_at_position, IsAlive):
                 unit_at_position.die()
-            self.die
+            self.die()
 
         else:
             self._way_distance += 1
             self.position = neighbor
-            
-            
+
+    
