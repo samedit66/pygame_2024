@@ -1,6 +1,4 @@
 from direction import Direction
-from cell_pos import CellPos
-from field import Field
 from game_object import GameObject
 from traits import IsAlive, SelfMovving
 
@@ -14,7 +12,7 @@ class Bullet(GameObject, IsAlive, SelfMovving):
         self._direction = direction
         self._position = None
         self._field = None
-        self._way_distance = 0
+        self._way_distance = 1
         self._texture = None
 
 
