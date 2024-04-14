@@ -3,9 +3,15 @@ import pygame
 from settings import Settings
 from direction import Direction 
 from cellpos import CellPos
-from tank import Tank 
+from tank import UserTank, EnemyTank
 from field import Field 
 from bullet import Bullet
+
+class UserEvents:
+    BULLET_FLIES = pygame.USEREVENT + 1
+    PLAYER_CAN_SHOOT = pygame.USEREVENT + 2 
+    ENEMY_TANK_CAN_MOVE = pygame.USEREVENT + 3
+    ENEMY_CAN_SHOOT = pygame.USEREVENT + 4
 
 class Game():
 
@@ -17,14 +23,23 @@ class Game():
         self.running = True
 
         self.field = Field()
-        self.tank = Tank()
-        self.bullet = Bullet(Direction.RIGHT)
-        self.field.put_at(self.bullet, CellPos(1,0))
-        self.field.put_at(self.tank, CellPos(0,0))
+
+        self.tank = UserTank()
+        self.enemy = EnemyTank()
+
+        self.field.put_at(self.enemy, CellPos(4,4))
+        self.field.put_at(self.tank, CellPos(1,0))
+
         self.direction = None
-        self.bullet_can_fly = True 
-        self.BULLET_FLIES = pygame.USEREVENT + 1
-        pygame.time.set_timer(self.BULLET_FLIES, 500)
+
+        self.bullet_can_fly = False 
+        self.player_can_shoot = False 
+        self.enemy_can_move = False
+        self.enemy_can_shoot = False
+        pygame.time.set_timer(UserEvents.BULLET_FLIES, 500)
+        pygame.time.set_timer(UserEvents.PLAYER_CAN_SHOOT, 1200)
+        pygame.time.set_timer(UserEvents.ENEMY_TANK_CAN_MOVE, 700)
+        pygame.time.set_timer(UserEvents.ENEMY_CAN_SHOOT, 1000)
 
     def process_input(self):
         self.direction = None 
@@ -34,20 +49,28 @@ class Game():
                 self.running = False
                 break 
 
-            elif event.type == self.BULLET_FLIES:
+            elif event.type == UserEvents.BULLET_FLIES:
                 self.bullet_can_fly = True
 
+            elif event.type == UserEvents.PLAYER_CAN_SHOOT:
+                self.player_can_shoot = True 
+            elif event.type == UserEvents.ENEMY_TANK_CAN_MOVE:
+                self.enemy_can_move = True 
+            elif event.type == UserEvents.ENEMY_CAN_SHOOT:
+                self.enemy_can_shoot = True
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RIGHT:
+                if event.key == pygame.K_d:
                     self.direction = Direction.RIGHT 
-                elif event.key == pygame.K_LEFT:
+                elif event.key == pygame.K_a:
                     self.direction = Direction.LEFT
-                elif event.key == pygame.K_DOWN:
+                elif event.key == pygame.K_s:
                     self.direction = Direction.DOWN
-                elif event.key == pygame.K_UP:
+                elif event.key == pygame.K_w:
                     self.direction = Direction.UP 
                 elif event.key == pygame.K_SPACE:
-                    self.tank.shoot()
+                    if self.player_can_shoot:
+                        self.tank.shoot()
+                        self.player_can_shoot = False
             
     def update_game_state(self):
         if self.direction is not None:
@@ -57,7 +80,14 @@ class Game():
             for bullet in self.field.get_bullets():
                 bullet.move()
 
-        self.field.clear_dead_units()
+            self.field.clear_dead_units()
+            self.bullet_can_fly = False 
+        if self.enemy_can_move:
+            self.enemy.move()
+            self.enemy_can_move = False
+        if self.enemy_can_shoot:
+            self.enemy.shoot()
+            self.enemy_can_shoot = False
 
     def render(self):
         self.main_window.blit(self.field.render(), (0,0))

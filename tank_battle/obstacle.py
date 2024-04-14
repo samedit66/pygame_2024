@@ -20,3 +20,8 @@ class WallEnd(Obstacle):
 
     def __init__(self, position = None, angle = None):
         super().__init__(tile_pos = CellPos(1,4), angle = angle, position = position)
+
+class Tower(Obstacle):
+
+    def __init__(self, position = None, angle = None):
+        super().__init__(tile_pos = CellPos(1,2), angle = angle, position = position)

@@ -5,7 +5,8 @@ from ground import *
 from obstacle import WallMiddle
 from obstacle import WallEnd
 from obstacle import WallCorner
-
+from obstacle import Tower
+from bullet import Bullet 
 
 class Field():
     def __init__(self):
@@ -82,9 +83,9 @@ class Field():
         self.ground = [
             [Grass(), Road(), Grass(), Grass(), Grass()],
             [Grass(), Road(), Grass(), Bush(), Grass()],
-            [Road(angle = 90), QuadRoad(), Road(angle = 90), Road(angle = 90), Road(angle = 90),],
-            [Grass(), Road(), Grass(), Crater(), Grass()],
-            [Bush(), Road(), Grass(), Grass(), Grass()],
+            [Road(angle = 90), QuadRoad(), Road(angle = 90), Road(angle = 90), TripleRoad(angle = -90),],
+            [Grass(), Road(), Grass(), Crater(), Road()],
+            [Bush(), Road(), Grass(), Grass(), Road()],
         ]
 
         for row in range(Settings.ROWS_COUNT):
@@ -93,11 +94,10 @@ class Field():
 
         self.walls = [
             WallCorner(position = CellPos(2, 0), angle=90), 
-            WallEnd(position = CellPos(2, 1), angle=90),
             WallMiddle(position = CellPos(3, 0)),
             WallMiddle(position = CellPos(4, 0)),
-            WallEnd(position = CellPos(2, 3), angle=-90),
             WallCorner(position = CellPos(2, 4), angle=180),
-            WallMiddle(position = CellPos(4, 4)),
-            WallMiddle(position = CellPos(3, 4))
+            WallCorner(position = CellPos(3, 4)),
+            Tower(position = CellPos(2, 1), angle = 90),
+            Tower(position = CellPos(2, 3), angle = -90)
         ]
