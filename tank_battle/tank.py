@@ -1,5 +1,6 @@
+from random import choice, random
 import pygame
-
+from bullet import Bullet
 from direction import Direction
 from texture import TileTexture
 from settings import Settings
@@ -58,9 +59,28 @@ class Tank(IsAlive):
 
     def shoot(self):
         neighbor = self.position.get_neighbor(self.current_direction)
-        is neighbor is not None:
-            return
+        if neighbor is None:
+            return False
         
-        
-        bullet = Bullet(neighbor)
-        self.field.put_at(bullet, neighbor)
+        bullet = Bullet(self.current_direction)
+        return self.field.put_at(bullet, neighbor)
+
+class UserTank(Tank):
+    pass
+
+class EnemyTank(Tank):
+    
+    def move(self):
+        if random() > 0.4:
+            if self.current_direction is None:
+                self.current_direction = choice(Direction.values())
+            super().move(self.current_direction) 
+        else:
+            possinle_directions = [d for d in Direction.values()
+                                    if d != self.current_direction]
+            super().move(choice(possinle_directions))
+
+    def shoot(self):
+        if random() > 0.5:
+            super().shoot()
+

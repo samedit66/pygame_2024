@@ -9,7 +9,7 @@ class CellPos():
         self.row = row
 
     def __str__(self):
-        return f'CellPos(col={self.row})' 
+        return f'CellPos(col={self.col}, row={self.row})' 
 
     def __eq__(self, other_pos):
         return (self.col == other_pos.col) and (self.row == other_pos.row)

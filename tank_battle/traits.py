@@ -3,13 +3,14 @@ class IsAlive:
     def __init__(self):
         self._is_alive = True
 
-    def is_alive(self):
+    def is_alive(self) -> bool:
         return self._is_alive
 
     def die(self):
-        self.is_alive = False
+        self._is_alive = False
 
 class SelfMoving:
 
-    def moovig(self)
+    def move(self):
+        raise NotImpLementedError
     

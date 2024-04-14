@@ -7,3 +7,7 @@ class Direction(Enum):
     LEFT = 2
     RIGHT = 3
     
+    @staticmethod
+
+    def values():
+        return [Direction.UP, Direction.DOWN, Direction.LEFT, Direction.RIGHT]

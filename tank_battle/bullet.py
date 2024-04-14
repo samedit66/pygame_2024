@@ -12,7 +12,7 @@ class Bullet(GameObject, IsAlive):
         IsAlive.__init__(self)
         SelfMoving.__init__(self)
         self._direction = direction
-        self._way_distance = 0 
+        self._way_distance = 1
         self.body_texture = None
         self._field = None
 
@@ -30,12 +30,13 @@ class Bullet(GameObject, IsAlive):
         if neighbor is None:
             self.die()
             return
-        elif self._filed.is_occupied(neighbor):
-            unit_at_position= self._filed.get_unit(neighbor)
+            
+        elif self._field.is_occupied(neighbor):
+            unit_at_position = self._field.get_unit(neighbor)
+
             if isinstance(unit_at_position, IsAlive):
-                unit_at_position()
-                self.die()
+                unit_at_position.die()
             self.die()
         else:
             self._way_distance += 1
-            self._pos = neighbor
+            self.position = neighbor
