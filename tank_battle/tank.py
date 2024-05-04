@@ -13,7 +13,7 @@ class Tank(IsAlive):
         IsAlive.__init__(self)
         self.field = None
         self.position = None
-        self.body_texture_file = 'tanks_images/blue/body.png'
+        self.body_texture_file = 'tanks_images/red/body.png'
         self.turret_texture_file = 'tanks_images/blue/turret2.png'
         self.body_texture = TileTexture(self.body_texture_file, Settings.CELL_SIZE)
         self.body_image = self.body_texture.get()
